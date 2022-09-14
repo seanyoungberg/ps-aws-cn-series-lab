@@ -512,7 +512,7 @@ So far our test deployments are using service type `CluserIP` which is only avil
 - Deploy 2048 app
 
 ```
-kubectl apply -f ~/ps-aws-cn-series-lab//kube-manifests/2048.yaml
+kubectl apply -f ~/ps-aws-cn-series-lab/kube-manifests/2048.yaml
 ```
 
 - Insepct service
@@ -520,16 +520,6 @@ kubectl apply -f ~/ps-aws-cn-series-lab//kube-manifests/2048.yaml
 ```
 kubectl -n game-2048 describe service service-2048
 ```
-
-- Update Service to be type `LoadBalancer`
-
-```
-vi ~/ps-aws-cn-series-lab//kube-manifests/2048.yaml
-```
-
-- Apply again to update the deployment
-
-- Inspect the service again with kubectl
 
 - Inspect Load Balancers in EC2 Console
 
