@@ -515,7 +515,7 @@ So far our test deployments are using service type `CluserIP` which is only avil
 kubectl apply -f ~/ps-aws-cn-series-lab/kube-manifests/2048.yaml
 ```
 
-- Insepct service
+- Inpect service
 
 ```
 kubectl -n game-2048 describe service service-2048
@@ -601,7 +601,7 @@ The Kubernets plugin will install
 
 ## Create Device Group and Template Stack
 
-When you install the Kubernets plugin it provisions severl reference templates that are configured for the various CN-Series deployment modes. For this excercise, we will be using service mode which uses the `K8S-Network-Setup-V2` template.
+When you install the Kubernetes plugin it provisions several reference templates that are configured for the various CN-Series deployment modes. For this excercise, we will be using service mode which uses the `K8S-Network-Setup-V2` template.
 
 - Create a Template Stack name `cnseries`
   - Add `K8S-Network-Setup-V2` template to the stack
@@ -699,16 +699,16 @@ kubectl get pods -n sample-app
 45. On the CloudShell tab, run the below commands.
 
 ```
-MY_TOKEN=`kubectl get serviceaccounts pan-plugin-user -n kube-system -o jsonpath='{.secrets\[0].name}'`
+kubectl -n kube-system get secrets | grep pan-plugin-user-token
 ```
 
 ```
-kubectl get secret $MY_TOKEN -n kube-system -o json > ~/pan-plugin-user.json
+kubectl -n kube-system get secrets (name of secret from previous step) >> cred.json
 ```
 
 This will create a credentials file to be used while adding the Kubernetes cluster in Panorama.
 
-46. Download the file by locating and clicking on the “Actions” dropdown list on the top-right side of the console.
+1.  Download the file by locating and clicking on the “Actions” dropdown list on the top-right side of the console.
 
 ![](https://lh5.googleusercontent.com/U0dqeL70RWEPjvhM3fiw0AiOwmKCp3rFB7fLr0FuA45SxG_8C6l5dBoXdRQRW-poJa5mnn3AUCRh_crZAwutzqjM1MIy--H8GgeSs3PksxEL2LBMXPdymAug7v50-MOOXy9NlN0BXCZYqek02Q)
 
