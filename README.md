@@ -512,7 +512,7 @@ So far our test deployments are using service type `CluserIP` which is only avil
 - Deploy 2048 app
 
 ```
-kubectl -f ~/ps-aws-cn-series-lab//kube-manifests/2048.yaml
+kubectl apply -f ~/ps-aws-cn-series-lab//kube-manifests/2048.yaml
 ```
 
 - Insepct service
