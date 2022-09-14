@@ -8,10 +8,10 @@ data:
   PAN_MGMT_SECRET: pan-mgmt-secret
 
   # Panorama settings
-  PAN_PANORAMA_IP: "35.182.55.251"
+  PAN_PANORAMA_IP: "<<changeme>>"
   PAN_DEVICE_GROUP: "cnseries"
   PAN_TEMPLATE_STACK: "cnseries"
-  PAN_CGNAME: "panorama"
+  PAN_CGNAME: "default"
   PAN_CTNR_MODE_TYPE: "k8s-service"
 
 #Non-mandatory parameters
