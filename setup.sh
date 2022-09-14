@@ -54,31 +54,6 @@ function install_aws_iam_authenticator() {
     mkdir -p ${HOME}/bin/ && cd ${HOME}/bin/ && curl -o aws-iam-authenticator $AWS_IAM_AUTH_DOWNLOAD_URL && chmod +x aws-iam-authenticator
 }
 
-function deploy_panorama() {
-    cd "${HOME}/lab-aws-cn-series-zero-trust/terraform/panorama"
-
-    # Initialize terraform
-    echo -e "\nInitializing directory for lab resource deployment"
-    terraform init
-
-    # Deploy resources
-    echo -e "\nDeploying Panorama Resources required for Palo Alto Networks Reference Architecture for Zero Trust with VM-Series on AWS"
-    terraform apply -auto-approve
-
-    if [ $? -eq 0 ]; then
-        echo -e "\nPanorama for AWS Zero Trust Reference Architecture with VM-Series Lab Deployment Completed successfully!"
-    else
-        echo -e "\nPanorama for AWS Zero Trust Reference Architecture with VM-Series Lab Deployment Failed!"
-        exit 1
-    fi
-}
-
-function get_panorama_ip() {
-    cd "${HOME}/lab-aws-cn-series-zero-trust/terraform/panorama"
-
-    PANORAMA_IP=$(terraform output PANORAMA_IP_ADDRESS | sed -e 's/^"//' -e 's/"$//')
-    echo $PANORAMA_IP
-}
 
 function deploy_cnseries_lab() {
 
@@ -156,5 +131,5 @@ install_terraform
 install_kubectl
 install_aws_iam_authenticator
 
-deploy_panorama
-deploy_cnseries_lab
+# deploy_panorama
+# deploy_cnseries_lab
