@@ -9,8 +9,6 @@
 
 This lab is intended to aid learning of kubernetes and EKS concepts in the context of deploying and supporting CN-Series. For this reason, many steps that would typically be automated are left as manual excercises to help understand the underlying components.
 
-There are questions throughout the guide that should be answered in the associated form as you work through the lab.
-
 This guide correlates with a QwikLabs environment that is not publically available.
 
 ## Deployment and Development Environment
@@ -33,7 +31,7 @@ Example for configuring AWS cli locally for API access to the QwikLabs account. 
 $ aws configure --profile qwiklabs-eks
 AWS Access Key ID [None]: AKIA************
 AWS Secret Access Key [None]: 2YtK************
-Default region name [None]: us-west-2
+Default region name [None]: us-east-2
 Default output format [None]: json
 ```
 
@@ -239,9 +237,7 @@ terraform init
 terraform apply
 ```
 
-It will take sometime (**~10 mins**) to deploy all the lab components. Status will be updated on the cloudshell console as deployment progresses. At the end of deployment, you should see the message “Completed successfully!”
-
-![](https://lh6.googleusercontent.com/8EZTut_ydtGxXEiPA3JtPD3J1Vvu3N-KUtv7n-fNRweUhFkguWJ3nGVz0Ljns6fo7Rst8sQsfdSnh4b7pkJAH9oKJOg8wFg_QyxIWT5ZkhGyLhSD6I5WbRn9S1fbCn3HK7COQ2uxquudjIzB_g)
+It will take sometime (**~10 mins**) to deploy all the lab components. Status will be updated on the cloudshell console as deployment progresses. 
 
 
 **If you get an error, run `terraform apply` again**
@@ -258,7 +254,7 @@ kubectl_demo_application_deployment_command = "kubectl apply -f ./sample-app/gue
 ```
 
 
-32. Setup your kubeconfig to use your AWS credentials to generate a kubeconfig. Command is given from terraform output
+1.  Setup your kubeconfig to use your AWS credentials to generate a kubeconfig. Command is given from terraform output
 
 ```
 aws eks update-kubeconfig --region us-east-1 --name $name
@@ -365,7 +361,7 @@ kubectl exec -it deployments/nginx-netshoot -c netshoot -- curl ifconfig.me
 > &#10067; What is this public IP address associated with?
 
 
-- Expand `nginx-netshoot` Deployment to 100 replicas
+- Scale out the `nginx-netshoot` Deployment to 100 replicas
 
 ```
 kubectl scale deployment nginx-netshoot --replicas=100
@@ -376,6 +372,15 @@ kubectl scale deployment nginx-netshoot --replicas=100
 > &#10067; How many *new* ENIs were added to the nodes?
 
 > &#10067; How many IPv4 address can be created on each interface for this instance type?
+
+- Scale out the `nginx-netshoot` Deployment back down to 4 replicas
+
+```
+kubectl scale deployment nginx-netshoot --replicas=4
+```
+
+> &#10067; Now how many ENIs are on the nodes?
+
 
 
 ## Networking between namespaces
@@ -567,10 +572,10 @@ terraform output
 
 37. Log in to Panorama management console:
 
-|              |            |
-| ------------ | ---------- |
-| **Username** | admin      |
-| **Password** | <see lab-details.txt> |
+|              |                       |
+| ------------ | ----------            |
+| **Username** | admin                 |
+| **Password** | see lab-details.txt   |
 
 1.  Once you have logged in, navigate to Panorama > Setup > Interfaces, as shown in the figure below.
 
