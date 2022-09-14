@@ -699,11 +699,11 @@ kubectl get pods -n sample-app
 45. On the CloudShell tab, run the below commands.
 
 ```
-kubectl -n kube-system get secrets | grep pan-plugin-user-token
+MY_TOKEN='kubectl get serviceaccounts pan-plugin-user -n kube-system -o jsonpath='{.secrets\[0].name}''
 ```
 
 ```
-kubectl -n kube-system get secrets (name of secret from previous step) >> cred.json
+kubectl get secret $MY_TOKEN -n kube-system -o json > ~/pan-plugin-user.json
 ```
 
 This will create a credentials file to be used while adding the Kubernetes cluster in Panorama.
