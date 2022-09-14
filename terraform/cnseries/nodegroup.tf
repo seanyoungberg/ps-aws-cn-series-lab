@@ -207,9 +207,9 @@ resource "aws_autoscaling_group" "NodeGroup" {
   min_size         = 2
 
   vpc_zone_identifier = [
-    aws_subnet.public_subnet_a.id,
-    aws_subnet.public_subnet_b.id,
-    aws_subnet.public_subnet_c.id
+    aws_subnet.private_subnet_a.id,
+    aws_subnet.private_subnet_b.id,
+    aws_subnet.private_subnet_c.id
   ]
 
   launch_template {

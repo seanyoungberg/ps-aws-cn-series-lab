@@ -16,13 +16,13 @@
 
 variable "region" {
   type        = string
-  default     = "us-west-2"
+  default     = "us-east-1"
   description = "The AWS region"
 }
 
 variable "k8s_version" {
   type        = string
-  default     = "1.22"
+  default     = "1.21"
   description = "Kubernetes version"
 }
 
